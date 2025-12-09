@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket  = "BUCKET"
+    bucket  = "BUCKET_NAME"
     key     = "BOTTLEROCKET"
     region  = "us-west-2"
     encrypt = true

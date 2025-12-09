@@ -59,7 +59,7 @@ resource "null_resource" "docker_build_push" {
 
 module "eks_cluster" {
   source = "../modules/eks-cluster"
-  depends_on = [module.vpc]
+  depends_on = [module.vpc, null_resource.docker_build_push]
   name   = var.name
   cluster_version = var.cluster_version
 }
@@ -118,7 +118,7 @@ module "eks_managed_node_group_level_2" {
 ################################################################################
 
 module "eks_blueprints_addons" {
-  depends_on = [module.eks_cluster]
+  depends_on = [module.eks_cluster, module.eks_managed_node_group_level_2]
   source     = "../modules/eks-addons"
 
   cluster_name      = module.eks_cluster.cluster_name

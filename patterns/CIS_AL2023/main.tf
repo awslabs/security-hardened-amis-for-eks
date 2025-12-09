@@ -67,6 +67,7 @@ resource "null_resource" "update_template" {
           sed -i '' 's#aws #sudo /bin//aws #g' templates/shared/runtime/bin/cache-pause-container
           sed -i '' 's#/tmp#/home/ec2-user#g' templates/al2023/variables-default.json
           sed -i '' 's#cache-pause-container#sudo cache-pause-container#g' templates/al2023/provisioners/cache-pause-container.sh
+          sed -i '' 's#PARTITION=$(imds#sudo chmod 755 /usr/bin/imds\nPARTITION=$(imds#g' templates/al2023/provisioners/install-worker.sh
       else
           # Linux commands
           echo "Applying changes for Linux..."
@@ -75,6 +76,8 @@ resource "null_resource" "update_template" {
           sed -i 's#aws #sudo /bin//aws #g' templates/shared/runtime/bin/cache-pause-container
           sed -i 's#/tmp#/home/ec2-user#g' templates/al2023/variables-default.json
           sed -i 's#cache-pause-container#sudo cache-pause-container#g' templates/al2023/provisioners/cache-pause-container.sh
+          sed -i 's#PARTITION=$(imds#sudo chmod 755 /usr/bin/imds\nPARTITION=$(imds#g' templates/al2023/provisioners/install-worker.sh
+
       fi
 }
       # First apply the sed commands
@@ -111,7 +114,7 @@ resource "null_resource" "create_hardened_ami_level_1" {
         --region ${var.aws_region} \
         --output text)
       
-      PACKER_BINARY=packer make k8s=1.33 \
+      PACKER_BINARY=packer make k8s=1.34 \
         os_distro=al2023 \
         aws_region=${var.aws_region} \
         source_ami_id=$AMI_ID \
@@ -166,7 +169,7 @@ resource "null_resource" "create_hardened_ami_level_2" {
         --region ${var.aws_region} \
         --output text)
       
-      PACKER_BINARY=packer make k8s=1.33 \
+      PACKER_BINARY=packer make k8s=1.34 \
       	os_distro=al2023 \
         aws_region=${var.aws_region} \
         source_ami_id=$AMI_ID \
@@ -352,7 +355,7 @@ resource "null_resource" "only_create_hardened_ami_level_1" {
         --region ${var.aws_region} \
         --output text)
 
-      PACKER_BINARY=packer make k8s=1.33 \
+      PACKER_BINARY=packer make k8s=1.34 \
         os_distro=al2023 \
         aws_region=${var.aws_region} \
         source_ami_id=$AMI_ID \
@@ -407,7 +410,7 @@ resource "null_resource" "only_create_hardened_ami_level_2" {
         --region ${var.aws_region} \
         --output text)
       
-      PACKER_BINARY=packer make k8s=1.33 \
+      PACKER_BINARY=packer make k8s=1.34 \
       	os_distro=al2023 \
         aws_region=${var.aws_region} \
         source_ami_id=$AMI_ID \

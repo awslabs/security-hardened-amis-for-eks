@@ -30,6 +30,7 @@ variable "cluster_addons" {
     vpc-cni = {
       most_recent    = true
       before_compute = true
+      resolve_conflicts_on_create = "OVERWRITE" ## Addon Deployment was failing due to a Conflict. By Default OVERWRITE was on Update.
     }
   }
 }

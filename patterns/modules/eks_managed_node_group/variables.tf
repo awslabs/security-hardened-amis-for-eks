@@ -44,6 +44,7 @@ variable "iam_role_additional_policies" {
   default = {
     AmazonSSMManagedInstanceCore     = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
     AmazonInspector2ManagedCisPolicy = "arn:aws:iam::aws:policy/AmazonInspector2ManagedCisPolicy"
+    AmazonEBSCSIDriverPolicy         = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
   }
 }
 
