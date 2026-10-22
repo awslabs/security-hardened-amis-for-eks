@@ -88,10 +88,12 @@ resource "null_resource" "update_template" {
         git clone https://github.com/awslabs/amazon-eks-ami.git --branch "$BRANCH"
       fi
       cd amazon-eks-ami
-      echo "Waiting for PR https://github.com/awslabs/amazon-eks-ami/pull/1922"
-      cp ../template_files/template.json templates/al2023/template.json
+      # As of amazon-eks-ami v20261012 the al2023 build is HCL2 (template.pkr.hcl +
+      # variables-default.pkrvars.hcl). The upstream template now natively supports
+      # remote_folder/working_dir/expect_disconnect, so we no longer override the
+      # template or variables files; remote_folder is passed as a make -var in the
+      # build steps below. We only overlay our sudo'd provisioner scripts.
       cp ../template_files/install-worker.sh templates/al2023/provisioners/install-worker.sh
-      cp ../template_files/variables-default.json templates/al2023/variables-default.json
       cp ../template_files/cache-pause-container templates/al2023/runtime/bin/cache-pause-container
       cp ../template_files/cache-pause-container.sh templates/al2023/provisioners/cache-pause-container.sh
       cp ../template_files/configure-selinux.sh templates/al2023/provisioners/configure-selinux.sh
