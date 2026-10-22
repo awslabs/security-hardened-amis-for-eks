@@ -260,8 +260,8 @@ Then you can check nodes that joined the cluster and troubleshoot issues if requ
 ```#!/bin/bash
 kubectl get nodes -o wide
 NAME                                        STATUS   ROLES    AGE     VERSION               INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                        KERNEL-VERSION                           CONTAINER-RUNTIME
-ip-10-0-19-243.us-west-2.compute.internal   Ready    <none>   4m54s   v1.36.2-eks-bca9cf6   10.0.19.243   <none>        Amazon Linux 2023.12.20260727   6.18.38-73.137.amzn2023.x86_64 (amd64)   containerd://2.2.4+unknown
-ip-10-0-27-81.us-west-2.compute.internal    Ready    <none>   4m55s   v1.36.2-eks-bca9cf6   10.0.27.81    <none>        Amazon Linux 2023.12.20260727   6.18.38-73.137.amzn2023.x86_64 (amd64)   containerd://2.2.4+unknown
+ip-10-0-22-135.us-west-2.compute.internal   Ready    <none>   20m   v1.37.0-eks-b9510e3   10.0.22.135   <none>        Amazon Linux 2023.12.20261021   6.18.54-121.166.amzn2023.x86_64 (amd64)   containerd://2.3.5+unknown
+ip-10-0-46-74.us-west-2.compute.internal    Ready    <none>   20m   v1.37.0-eks-b9510e3   10.0.46.74    <none>        Amazon Linux 2023.12.20261021   6.18.54-121.166.amzn2023.x86_64 (amd64)   containerd://2.3.5+unknown
 ```
 
 Check if all the pods are running:
@@ -269,16 +269,16 @@ Check if all the pods are running:
 ```#!/bin/bash
 kubectl get pods -A
 NAMESPACE     NAME                                  READY   STATUS    RESTARTS   AGE
-kube-system   aws-node-b88lg                        2/2     Running   0          4m20s
-kube-system   aws-node-n655h                        2/2     Running   0          4m18s
-kube-system   coredns-6d9864d4bb-h955w              1/1     Running   0          2m38s
-kube-system   coredns-6d9864d4bb-xfzw9              1/1     Running   0          2m38s
-kube-system   ebs-csi-controller-7bcc7664c8-bzd8f   6/6     Running   0          2m36s
-kube-system   ebs-csi-controller-7bcc7664c8-zmt94   6/6     Running   0          2m36s
-kube-system   ebs-csi-node-g2zkk                    3/3     Running   0          2m36s
-kube-system   ebs-csi-node-q9bjt                    3/3     Running   0          2m36s
-kube-system   kube-proxy-mdzgs                      1/1     Running   0          4m20s
-kube-system   kube-proxy-nmnbn                      1/1     Running   0          4m18s
+kube-system   aws-node-pwv5v                        2/2     Running   0          20m
+kube-system   aws-node-qd5sm                        2/2     Running   0          20m
+kube-system   coredns-6bd8c6cd8c-fv798              1/1     Running   0          20m
+kube-system   coredns-6bd8c6cd8c-zsvsn              1/1     Running   0          20m
+kube-system   ebs-csi-controller-868cc5bf75-4f9zp   6/6     Running   0          20m
+kube-system   ebs-csi-controller-868cc5bf75-5hvlh   6/6     Running   0          20m
+kube-system   ebs-csi-node-kl62t                    3/3     Running   0          20m
+kube-system   ebs-csi-node-phzbx                    3/3     Running   0          20m
+kube-system   kube-proxy-59wf9                      1/1     Running   0          20m
+kube-system   kube-proxy-8wgbw                      1/1     Running   0          20m
 ```
 
 ## Troubleshooting
@@ -291,8 +291,8 @@ Please refer to the [troubleshooting docs](../../docs/troubleshooting.md)
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 6.56.0 |
-| <a name="requirement_helm"></a> [helm](#requirement\_helm) | 3.2.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 6.69.1 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | 3.3.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.38.0 |
 | <a name="requirement_null"></a> [null](#requirement\_null) | 3.2.4 |
 
@@ -315,10 +315,10 @@ Please refer to the [troubleshooting docs](../../docs/troubleshooting.md)
 | [null_resource.only_create_hardened_ami_level_1](https://registry.terraform.io/providers/hashicorp/null/3.2.4/docs/resources/resource) | resource |
 | [null_resource.only_create_hardened_ami_level_2](https://registry.terraform.io/providers/hashicorp/null/3.2.4/docs/resources/resource) | resource |
 | [null_resource.run_cis_scan](https://registry.terraform.io/providers/hashicorp/null/3.2.4/docs/resources/resource) | resource |
-| [aws_ami.eks_optimized_al2023_level_1](https://registry.terraform.io/providers/hashicorp/aws/6.56.0/docs/data-sources/ami) | data source |
-| [aws_ami.eks_optimized_al2023_level_2](https://registry.terraform.io/providers/hashicorp/aws/6.56.0/docs/data-sources/ami) | data source |
-| [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/6.56.0/docs/data-sources/availability_zones) | data source |
-| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/6.56.0/docs/data-sources/caller_identity) | data source |
+| [aws_ami.eks_optimized_al2023_level_1](https://registry.terraform.io/providers/hashicorp/aws/6.69.1/docs/data-sources/ami) | data source |
+| [aws_ami.eks_optimized_al2023_level_2](https://registry.terraform.io/providers/hashicorp/aws/6.69.1/docs/data-sources/ami) | data source |
+| [aws_availability_zones.available](https://registry.terraform.io/providers/hashicorp/aws/6.69.1/docs/data-sources/availability_zones) | data source |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/6.69.1/docs/data-sources/caller_identity) | data source |
 
 ## Inputs
 
@@ -327,7 +327,7 @@ Please refer to the [troubleshooting docs](../../docs/troubleshooting.md)
 | <a name="input_aws_region"></a> [aws\_region](#input\_aws\_region) | AWS region | `string` | `"us-west-2"` | no |
 | <a name="input_additional_tags"></a> [additional\_tags](#input\_additional\_tags) | Additional tags to merge with common\_tags. Use this to add team, cost-center, project, etc. | `map(string)` | `{}` | no |
 | <a name="input_capacity_type"></a> [capacity\_type](#input\_capacity\_type) | Type of capacity for the EKS managed node groups. ON\_DEMAND for stability (recommended for CIS scanning), SPOT for cost savings. | `string` | `"ON_DEMAND"` | no |
-| <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | EKS Cluster Version | `string` | `"1.36"` | no |
+| <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | EKS Cluster Version | `string` | `"1.37"` | no |
 | <a name="input_create_ami_level1"></a> [create\_ami\_level1](#input\_create\_ami\_level1) | When true and only\_create\_hardened\_ami\_level\_1 is targeted, build a Level 1 hardened AMI without creating VPC/EKS resources. | `bool` | `false` | no |
 | <a name="input_create_ami_level2"></a> [create\_ami\_level2](#input\_create\_ami\_level2) | When true and only\_create\_hardened\_ami\_level\_2 is targeted, build a Level 2 hardened AMI without creating VPC/EKS resources. | `bool` | `false` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment name applied as a tag to all resources (e.g., dev, staging, prod). | `string` | `"dev"` | no |

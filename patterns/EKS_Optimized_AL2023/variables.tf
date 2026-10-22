@@ -12,7 +12,7 @@ variable "aws_region" {
 variable "cluster_version" {
   description = "EKS Cluster Version"
   type        = string
-  default     = "1.36"
+  default     = "1.37"
 
   validation {
     condition     = can(regex("^[0-9]+\\.[0-9]+$", var.cluster_version))

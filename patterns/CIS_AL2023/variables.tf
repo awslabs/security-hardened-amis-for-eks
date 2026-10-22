@@ -12,7 +12,7 @@ variable "aws_region" {
 variable "cluster_version" {
   description = "EKS Cluster Version"
   type        = string
-  default     = "1.36"
+  default     = "1.37"
 
   validation {
     condition     = can(regex("^[0-9]+\\.[0-9]+$", var.cluster_version))
@@ -57,7 +57,7 @@ variable "public_subnet_id" {
 variable "branch" {
   description = "EKS AMI Branch TAG" ## For Example: https://github.com/awslabs/amazon-eks-ami/releases/tag/v20260724 ## Check and Update During Monthly Release.
   type        = string
-  default     = "v20260724"
+  default     = "v20261012"
 
   validation {
     condition     = can(regex("^v[0-9]+$", var.branch))
@@ -68,7 +68,7 @@ variable "branch" {
 variable "cis_ami_name_level_1" {
   description = "CIS AMI Name which will be use to Search the CIS AMI from Market Place" ## Check and Update During Monthly Release.
   type        = string
-  default     = "CIS Amazon Linux 2023 Benchmark - Level 1 - v07*"
+  default     = "CIS Amazon Linux 2023 Benchmark - Level 1 - v10*"
 
   validation {
     condition     = can(regex("^[a-zA-Z0-9 .*-]+$", var.cis_ami_name_level_1))
@@ -79,7 +79,7 @@ variable "cis_ami_name_level_1" {
 variable "cis_ami_name_level_2" {
   description = "CIS AMI Name which will be use to Search the CIS AMI from Market Place" ## Check and Update During Monthly Release v07 if needed.
   type        = string
-  default     = "CIS Amazon Linux 2023 Benchmark - Level 2 - v07*"
+  default     = "CIS Amazon Linux 2023 Benchmark - Level 2 - v10*"
 
   validation {
     condition     = can(regex("^[a-zA-Z0-9 .*-]+$", var.cis_ami_name_level_2))

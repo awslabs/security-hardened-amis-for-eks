@@ -25,7 +25,7 @@ locals {
 data "amazon-ami" "eks_optimized_ami_al2023" {
     filters = {
         virtualization-type = "hvm"
-        name = "amazon-eks-node-al2023-x86_64-standard-1.36-v20260724" ## Change the AMI Here To Use a Different Source AMI.
+        name = "amazon-eks-node-al2023-x86_64-standard-1.37-v20261012" ## Change the AMI Here To Use a Different Source AMI.
         root-device-type = "ebs"
     }
     owners = ["602401143452"]
